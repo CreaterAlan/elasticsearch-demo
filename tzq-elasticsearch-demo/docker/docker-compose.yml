@@ -1,0 +1,26 @@
+#本地
+version: '3.1'
+services:
+  
+  elastic:
+    image: elasticsearch:6.7.0
+    restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      discovery.type: single-node
+    volumes:
+      - ./elasticsearch-analysis-ik-6.7.0:/usr/share/elasticsearch/plugins/ik
+      # - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+
+  elastic-head:
+    image: docker.io/mobz/elasticsearch-head:5
+    restart: always
+    ports:
+      - 9100:9100
+    # volumes:
+      # - ./vendor.js:/usr/src/app/_site/vendor.js
+    
+
+    
